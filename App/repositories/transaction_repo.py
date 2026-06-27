@@ -10,7 +10,6 @@ def get_month_transactions(user_id: str, month: str):
     docs = db.collection("transactions") \
         .where("userId", "==", user_id) \
         .where("month", "==", month) \
-        .where("parentTransactionId", "!=", None) \
         .stream()
 
     return [{"id": d.id, **d.to_dict()} for d in docs]

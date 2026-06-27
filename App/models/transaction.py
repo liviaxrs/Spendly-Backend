@@ -3,17 +3,16 @@ from datetime import datetime
 from typing import Optional, Literal
 
 
-class TransactionCreate(BaseModel):
+class Transaction(BaseModel):
     userId: str
     amount: float
     type: Literal["INCOME", "EXPENSE"]
     date: datetime
-    month: Optional[str] = None
+    month: str                    # SEMPRE EXISTE
     categoryId: Optional[str] = None
     description: Optional[str] = None
 
-    # Installments
-    totalInstallments: int = 1
-    # INTERNAL USE ONLY
-    installmentIndex: Optional[int] = Field(None, exclude=True)
-    parentTransactionId: Optional[str] = Field(None, exclude=True)
+    # Parcelamento
+    parentId: Optional[str] = None   # null = normal
+    installmentIndex: Optional[int] = None
+    totalInstallments: Optional[int] = None

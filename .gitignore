@@ -1,0 +1,14 @@
+# Ambientes virtuais
+venv/
+.venv/
+env/
+
+# Python temporários
+__pycache__/
+*.pyc
+
+# Segurança
+.env
+*.json
+credentials/
+core/config.py

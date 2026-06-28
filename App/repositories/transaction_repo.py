@@ -25,7 +25,7 @@ def get_transaction_by_id(tx_id: str):
 
 def get_transactions_by_parent(parent_id: str):
     docs = db.collection("transactions") \
-        .where("parentTransactionId", "==", parent_id) \
+        .where("parentId", "==", parent_id) \
         .stream()
 
     return [{"id": d.id, **d.to_dict()} for d in docs]

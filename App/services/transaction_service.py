@@ -9,7 +9,7 @@ from uuid import uuid4
 from dateutil.relativedelta import relativedelta
 
 
-def create_transaction_service(data):
+def create_transaction(data):
     tx = data.dict()
     total = tx.get("totalInstallments", 1)
     base_date = tx["date"]
@@ -54,11 +54,11 @@ def delete_transaction_service(tx_id: str):
         return False
 
     parent_id = tx.get("parentId")
-
     # 🔹 Parcelada → deleta todas do grupo
     if parent_id:
         siblings = get_transactions_by_parent(parent_id)
         for s in siblings:
+            
             delete_transaction(s["id"])
         return True
 

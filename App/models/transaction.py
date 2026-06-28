@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional, Literal
 
 
-class Transaction(BaseModel):
+class TransactionCreate(BaseModel):
     userId: str
     amount: float
     type: Literal["INCOME", "EXPENSE"]

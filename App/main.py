@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from App.routes import user_route, category_route
 from App.routes import summary_route, transaction_route
 from fastapi.middleware.cors import CORSMiddleware
-from Backend.App.core.firestore import init_firebase
+from App.core.firestore import init_firebase
 
 init_firebase()
 app = FastAPI()

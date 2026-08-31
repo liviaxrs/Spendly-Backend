@@ -8,7 +8,7 @@ class TransactionCreate(BaseModel):
     amount: float
     type: Literal["INCOME", "EXPENSE"]
     date: datetime
-    month: str                    # SEMPRE EXISTE
+    month: str                    
     categoryId: Optional[str] = None
     description: Optional[str] = None
 

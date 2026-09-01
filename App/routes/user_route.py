@@ -16,7 +16,7 @@ def create_or_sync_user(
     """
     try:
         user = sync_or_create_user(current_user, user_data)
-        return user
+        return {"status": "success", "message": "Usuário criado perfeitamente"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 

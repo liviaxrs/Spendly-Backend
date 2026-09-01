@@ -5,10 +5,10 @@ from App.core.auth import get_current_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-@router.post("/sync", status_code=201, response_model=UserResponse)
+@router.post("/sync", status_code=201)
 def create_or_sync_user(
     user_data: UserCreate = None, 
-    current_user: dict = Depends(get_current_user) # <- O GUARDião!
+    current_user: dict = Depends(get_current_user)
 ):
     """
     O frontend chama esta rota logo após fazer o login no Firebase.
@@ -20,7 +20,7 @@ def create_or_sync_user(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.get("/me", response_model=UserResponse)
+@router.get("/me")
 def get_my_profile(current_user: dict = Depends(get_current_user)):
     """
     Busca o perfil de quem está fazendo a requisição. O UID vem do token, impossível fraudar.
@@ -30,7 +30,7 @@ def get_my_profile(current_user: dict = Depends(get_current_user)):
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
-@router.patch("/me", response_model=UserResponse)
+@router.patch("/me")
 def update_my_profile(
     update_data: UserUpdate, 
     current_user: dict = Depends(get_current_user)
